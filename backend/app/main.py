@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.errors import register_exception_handlers
 from app.core.logging_config import get_logger, setup_logging
-from app.routers import demo, general
+from app.routers import admin, auth, categories, general, locations, meals, provider, reservations
 
 setup_logging(settings.log_level)
 logger = get_logger("main")
@@ -37,7 +37,10 @@ app.add_middleware(
 register_exception_handlers(app)
 
 app.include_router(general.router)
-
-# Temporary demo routes, only in development
-if settings.app_env == "development":
-    app.include_router(demo.router)
+app.include_router(auth.router)
+app.include_router(categories.router)
+app.include_router(locations.router)
+app.include_router(meals.router)
+app.include_router(reservations.router)
+app.include_router(admin.router)
+app.include_router(provider.router)
