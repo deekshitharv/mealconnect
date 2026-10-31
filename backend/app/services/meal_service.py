@@ -30,6 +30,7 @@ def list_meals(
     search: str | None,
     category: str | None,
     location: str | None,
+    provider_id: int | None,
     status_filter: str | None,
     sort: str,
     page: int,
@@ -50,6 +51,8 @@ def list_meals(
         stmt = stmt.where(
             or_(Location.city.ilike(pattern, escape="\\"), Location.name.ilike(pattern, escape="\\"))
         )
+    if provider_id:
+        stmt = stmt.where(Meal.provider_id == provider_id)
 
     # Status filter uses the *effective* status, so expiry is respected.
     if status_filter == "AVAILABLE":

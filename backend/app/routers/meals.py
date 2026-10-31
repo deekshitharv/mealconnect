@@ -22,6 +22,7 @@ def list_meals(
     search: str | None = Query(None, max_length=100, description="Text to find in name or description"),
     category: str | None = Query(None, max_length=50, description="Category name, e.g. Lunch"),
     location: str | None = Query(None, max_length=100, description="City or location name, e.g. Bangalore"),
+    provider_id: int | None = Query(None, ge=1, description="Only meals from this provider"),
     status_filter: Literal["AVAILABLE", "FULLY_RESERVED", "EXPIRED", "UNAVAILABLE"] | None = Query(
         None, alias="status", description="Meal status"
     ),
@@ -35,6 +36,7 @@ def list_meals(
         search=search,
         category=category,
         location=location,
+        provider_id=provider_id,
         status_filter=status_filter,
         sort=sort,
         page=page,
