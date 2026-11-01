@@ -1,5 +1,6 @@
 """Fills the database with DEMO data. Safe to run more than once.
 The passwords below are for local demos only. Never use them in real life."""
+import os
 from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import select
@@ -9,7 +10,7 @@ from app.db.session import SessionLocal
 from app.models import Category, Location, Meal, User
 
 DEMO_USERS = [
-    ("Admin", "admin@example.com", "Admin@12345", "ADMIN"),
+    ("Admin", "admin@example.com", os.getenv("SEED_ADMIN_PASSWORD", "Admin@12345"), "ADMIN"),
     ("Green Leaf Cafe", "provider@example.com", "Provider@123", "PROVIDER"),
     ("Sunrise Bakers", "provider2@example.com", "Provider@123", "PROVIDER"),
     ("Asha Rao", "user@example.com", "User@12345", "USER"),
