@@ -45,4 +45,6 @@ Demo accounts and meals are created by `backend/seed.py`. The admin password is 
 
 ## API testing
 
-A Postman collection is included in the `postman` folder, and the interactive docs are at `/docs`.
+   ## API testing
+
+   Interactive API docs (Swagger) are available at `/docs`.
